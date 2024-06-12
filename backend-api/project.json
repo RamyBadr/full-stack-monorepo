@@ -1,0 +1,33 @@
+{
+  "name": "backend-api",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "backend-api/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "backend-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "backend-api:build:development"
+        },
+        "production": {
+          "buildTarget": "backend-api:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "backend-api/jest.config.ts"
+      }
+    }
+  }
+}
