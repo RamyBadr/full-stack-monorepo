@@ -1,7 +1,9 @@
 import { JwtService } from "@nestjs/jwt";
+import { getModelToken } from "@nestjs/mongoose";
 import { Test, TestingModule } from "@nestjs/testing";
 
 import { Model } from "mongoose";
+import { createMockRepository } from "../__mocks/mock-repository";
 import jwtConfig from "../config/jwt.config";
 import { BcryptService } from "../hashing/bcrypt.service";
 import { HashingService } from "../hashing/hashing.service";
@@ -18,6 +20,10 @@ describe("AuthenticationService", () => {
       providers: [
         AuthenticationService,
         JwtService,
+        {
+          provide: getModelToken("User"),
+          useValue: createMockRepository
+        },
         {
           provide: HashingService,
           useClass: BcryptService
