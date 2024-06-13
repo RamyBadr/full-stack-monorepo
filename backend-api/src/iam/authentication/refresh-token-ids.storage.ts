@@ -9,11 +9,12 @@ export class RefreshTokenIdsStorage
 
   onApplicationBootstrap() {
     // TODO: Ideally, we should move this to the dedicated "RedisModule"
+    const redisOptions = {
+      host: process.env.REDIS_HOST || "localhost",
+      port: +(process.env.REDIS_PORT || "6379")
+    };
     // instead of initiating the connection here.
-    this.redisClient = new Redis({
-      host: "localhost",
-      port: 6379
-    });
+    this.redisClient = new Redis(redisOptions);
   }
 
   onApplicationShutdown(signal?: string) {

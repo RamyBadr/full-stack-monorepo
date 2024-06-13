@@ -8,7 +8,7 @@ import { AppService } from "./app.service";
 
 @Module({
   imports: [
-    MongooseModule.forRoot("mongodb://user:password@localhost:27017/project"),
+    MongooseModule.forRoot(process.env.MONGODB_URI),
     UsersModule,
     IamModule
   ],
