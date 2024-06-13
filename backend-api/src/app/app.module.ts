@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
+import config from "../config";
 import { IamModule } from "../iam/iam.module";
 import { UsersModule } from "../users/users.module";
 
@@ -8,7 +9,7 @@ import { AppService } from "./app.service";
 
 @Module({
   imports: [
-    MongooseModule.forRoot("mongodb://user:password@localhost:27017/project"),
+    MongooseModule.forRoot(config.mongodb.uri),
     UsersModule,
     IamModule
   ],

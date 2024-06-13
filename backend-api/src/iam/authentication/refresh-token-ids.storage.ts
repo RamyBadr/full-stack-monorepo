@@ -1,5 +1,6 @@
 import { Injectable, OnApplicationBootstrap, OnApplicationShutdown } from "@nestjs/common";
 import Redis from "ioredis";
+import config from "../../config";
 import { InvalidatedRefreshTokenError } from "../errors/invalidated-refresh-token.error";
 
 @Injectable()
@@ -11,8 +12,8 @@ export class RefreshTokenIdsStorage
     // TODO: Ideally, we should move this to the dedicated "RedisModule"
     // instead of initiating the connection here.
     this.redisClient = new Redis({
-      host: "localhost",
-      port: 6379
+      host: config.redis.host,
+      port: config.redis.port
     });
   }
 
@@ -37,6 +38,6 @@ export class RefreshTokenIdsStorage
   }
 
   private getKey(userId: string): string {
-    return `user-${userId}`;
+    return `user-token-${userId}`;
   }
 }
