@@ -10,6 +10,7 @@ import { AuthenticationController } from "./authentication.controller";
 import { AuthenticationService } from "./authentication.service";
 import { RefreshTokenIdsStorage } from "./refresh-token-ids.storage";
 
+const UserModel = createMockRepository;
 describe("AuthenticationController", () => {
   let controller: AuthenticationController;
 
@@ -24,7 +25,7 @@ describe("AuthenticationController", () => {
         },
         {
           provide: getModelToken("User"),
-          useValue: createMockRepository()
+          useValue: UserModel
         },
         {
           provide: jwtConfig.KEY,

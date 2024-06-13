@@ -6,31 +6,20 @@
 
 ## Integrate with editors
 
-Enhance your Nx experience by installing [Nx Console](https://nx.dev/nx-console) for your favorite editor. Nx Console
-provides an interactive UI to view your projects, run tasks, generate code, and more! Available for VSCode, IntelliJ and
-comes with a LSP for Vim users.
+## start app locally :
 
-## Nx plugins and code generators
-
-Add Nx plugins to leverage their code generators and automated, inferred tasks.
+the compose file generates ready to use db
+rename .example.env to .env , customize your db name, user , other secrets then run
 
 ```
-# Add plugin
-npx nx add @nx/react
-
-# Use code generator
-npx nx generate @nx/react:app demo
-
-# Run development server
-npx nx serve demo
-
-# View project details
-npx nx show project demo --web
+docker-compose -f ./docker-compose.yml up -d
+npm run start:backend-api:watch
+npm run start:frontend-ui
 ```
 
-Run `npx nx list` to get a list of available plugins and whether they have generators. Then run `npx nx list <plugin-name>` to see what generators are available.
-
-Learn more about [code generators](https://nx.dev/features/generate-code) and [inferred tasks](https://nx.dev/concepts/inferred-tasks) in the docs.
+the front end is on  http://localhost:4200/
+the backend default host on  http://localhost:3000/api/v1
+swagger docs on  http://localhost:3000/docs
 
 ## Running tasks
 
